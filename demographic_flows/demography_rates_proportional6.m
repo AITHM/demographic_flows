@@ -26,7 +26,7 @@ for state_transition = 1:number_of_state_observations-1
     % tricky transition is from positive to zero -> need to avoid -INF rate
     % rather than transition to zero, transition to one thousandth
     f_state1_zero = find(state_1==0);
-    state_1(f_state1_zero) = state_0(f_state1_zero)/1000;
+    state_1(f_state1_zero) = state_0(f_state1_zero)/10000;
     % these are the easy transitions, treat like scalar transition
     f_pos = find(state_0 > 0); %identify all states that have a positive starting point
     state_growth_rate(f_pos) = log(state_1(f_pos)./state_0(f_pos));
