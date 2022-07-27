@@ -3,9 +3,9 @@ function [time_state, y_state] =return_epi(times_step_changes, flows_demographic
 %flows_demographic must be an NxNxM matrix, with time_step_changes being of
 %length M and initial state of length N or a matrix in which the product of
 %the dimensions = N
-
+ options = odeset('RelTol',1e-5);
 initial_state_long = reshape(initial_state, prod(size(initial_state)), 1);
-[t,y] = ode45(@ydot, [times_step_changes(1),times_step_changes(end)], initial_state_long);
+[t,y] = ode45(@ydot, [times_step_changes(1),times_step_changes(end)], initial_state_long, options);
 
 % after running the ODE, convert y to daily values
 [time_state, y_state_long] = change_to_daily_specify_time_dimension(t, y, 1);
