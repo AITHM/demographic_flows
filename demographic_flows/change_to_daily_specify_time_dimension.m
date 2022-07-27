@@ -5,7 +5,7 @@ function [t_daily, y_daily] = change_to_daily_specify_time_dimension(t, y,  time
 % set up t_return vector
 days=[floor(t(1)):floor(t(end))];
 t_daily=days;
-length_days = length(t_daily)
+length_days = length(t_daily);
 % set up yreturn array
 y_size = size(y);
 y_daily_size = y_size;
