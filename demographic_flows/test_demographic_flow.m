@@ -1,11 +1,12 @@
 clear
 % generate some tricky random state data, with zeros
+rng(10)
 state1 = rand(5, 1);
 state1(5) = 0;
 state2 = rand(5, 1);
 state2(1) = 0;
 state3 = rand(5, 1);
-
+state3(5) = 0;
 
 % generate the time vector 
 tvec=[1, 10, 100];
@@ -33,9 +34,10 @@ ages_and_vacc_at_10 = y_state(:, 10);
 compare_model_and_y_at_10 = [ages_and_vacc_at_10, state2]
 ages_and_vacc_at_100 = y_state(:, 100);
 compare_model_and_y_at_100 = [ages_and_vacc_at_100, state3]
-assert(sum(abs(diff(compare_model_and_y_at_start')))<.01, "modelled first time point does not align with data")
-assert(sum(abs(diff(compare_model_and_y_at_10')))<.01, "modelled second time point does not align with data")
-assert(sum(abs(diff(compare_model_and_y_at_100')))<.01, "modelled third time point does not align with data")
+
+assert(sum(abs(diff(compare_model_and_y_at_start')))<.001, "modelled first time point does not align with data")
+assert(sum(abs(diff(compare_model_and_y_at_10')))<.001, "modelled second time point does not align with data")
+assert(sum(abs(diff(compare_model_and_y_at_100')))<.001, "modelled third time point does not align with data")
 %%
 % test that output is as expected
 % Create a stacked bar chart using the bar function
